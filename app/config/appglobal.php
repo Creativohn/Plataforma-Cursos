@@ -2,7 +2,7 @@
 
 return array(
 		'admin.folder' => 'control',
-		'' => '',
+		'path_uploads' => 'uploads',
 		'' => '',
 		'' => '',
 		'' => '',

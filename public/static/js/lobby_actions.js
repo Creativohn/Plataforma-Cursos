@@ -14,10 +14,9 @@ $(document).ready(function(){
         event.stopPropagation();
     });
 
-    $('.scrollbar-inner').scrollbar({
-    	'autoScrollSize': true
-    });
-});
+   var croppic = new Croppic('front_cover', cropperOptions);
+   var avatar_croppic = new Croppic('profile_avatar_big', cropperAvatar);
+ });
 
 
 

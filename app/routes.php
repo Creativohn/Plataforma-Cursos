@@ -44,4 +44,15 @@ Route::post('mylobby/profile/edit', 'Lobby_userController@postedit');
 
 
 // User Profile
+Route::post('mylobby/profile/cover', 'Lobby_userController@postchangecover');
+Route::post('mylobby/profile/cover/crop', 'Lobby_userController@postcovercrop');
+Route::post('mylobby/profile/avatar', 'Lobby_userController@postchangeavatar');
+Route::post('mylobby/profile/avatar/crop', 'Lobby_userController@postavatarcrop');
+Route::get('test', 'Lobby_userController@gettest');
+Route::get('mylobby/user/follow/{usertofollow}', 'Lobby_userController@getaddfollowtouser');
+Route::get('mylobby/user/unfollow/{usertofollow}', 'Lobby_userController@getunfollowuser');
+
+
+
+// No remove
 Route::get('{username}', 'Lobby_userController@getuserprofile');

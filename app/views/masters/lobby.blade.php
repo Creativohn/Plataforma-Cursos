@@ -10,7 +10,7 @@
 		{{ HTML::script('static/js/backbone.js') }}
 		{{ HTML::script('static/js/animations.min.js') }}
 		{{ HTML::script('static/js/jquery.timeago.js') }}
-		{{ HTML::script('static/js/jquery.scrollbar.min.js') }}
+		{{ HTML::script('static/js/croppic.min.js') }}
 		{{ HTML::script('static/js/lobby_actions.js') }}
 
 
@@ -19,7 +19,7 @@
 		{{ HTML::style('static/css/normalize.css') }}
 		{{ HTML::style('static/css/animations.min.css') }}
 		{{ HTML::style('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css') }}
-		{{ HTML::style('static/css/scroll.min.css') }}
+		{{ HTML::style('static/css/croppic.css') }}
 		{{ HTML::style('static/css/base_lobby.css') }}
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
 	</head>
@@ -35,17 +35,22 @@
 					<li><a href="{{ URL::to('/users') }}"><i class="fa fa-users"></i> @lang('lobby.main.users')</a></li>
 					<li><a href="{{ URL::to('/events') }}"><i class="fa fa-calendar-o"></i> @lang('lobby.main.events')</a></li>
 				</ul>
-
+				
 				<ul class="pull-right">
+					@if (Auth::check())
 					<li><a href="#"><i class="fa fa-bullhorn"></i></a></li>
 					<li><a href="#"><i class="fa fa-envelope"></i></a></li>
 					<li class="username">
 						<a href="#">
-							<img src="{{ URL::to('/static/img/avatar1.jpg') }}" class="mini_avatar">
+							<img src="{{ URL::to(App::make('BaseController')->getUseravatar(Auth::user()->id)) }}" class="mini_avatar">
 							{{  Auth::user()->realname }}
 						</a>
 
 						<ul class="box">
+							<li class="userbox_profile" style="background: url('{{ App::make('BaseController')->getUserfrontcover(Auth::user()->id) }}') no-repeat center center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">							
+								<a href="{{ URL::to(Auth::user()->username) }}">{{  Auth::user()->username }}</a>
+							</li>
+
 							<li>
 								<a href="#">
 									<i class="fa fa-tint"></i> @lang('lobby.user.points') {{  Auth::user()->points }}
@@ -66,7 +71,9 @@
 						</ul>					
 
 					</li>
+					@endif
 				</ul>
+				
 
 			</nav>
 		@show
